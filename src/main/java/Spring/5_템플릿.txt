@@ -26,5 +26,9 @@
             3. 모든 .jsp 파일 상단에 jsp 설정코드
                 <%@ page language = "java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             * localhost8080/(webapp)이하 경로 로 URL 정의 된다.
+        3) 다른 .jsp 파일 불러오기, 헤더/푸터 페이지 사용된다.
+            <jsp:include page="/.jsp"></jsp:include>
+            * 주의할점: 마크업간의 공백/띄어쓰기 사용하지 않기
+
 
 
