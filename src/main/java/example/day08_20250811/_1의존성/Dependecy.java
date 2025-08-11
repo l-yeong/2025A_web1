@@ -1,8 +1,7 @@
-package example.day08_20250811;
+package example.day08_20250811._1의존성;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 // =======[방법1] 해당 인스턴스를 직접(new) 생성하여 메소드 호출
 class SampleDao1{ void method1(){} }
