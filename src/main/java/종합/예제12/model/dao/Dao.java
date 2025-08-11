@@ -6,7 +6,7 @@ import java.sql.DriverManager;
     // 여러개 DAO를 연동하는 중복 코드를 관리하는 슈퍼클래스
     public class Dao {
         // [DB연동 부가 정보]
-        private String db_url="jdbc:mysql://localhost:3306/board";
+        private String db_url="jdbc:mysql://localhost:3306/exam12";
         private String db_user="root";
         private String db_pwd="1234";
 
