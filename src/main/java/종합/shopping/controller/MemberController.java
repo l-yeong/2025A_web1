@@ -1,9 +1,9 @@
-package 종합.homeShopping.controller;
+package 종합.shopping.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import 종합.homeShopping.model.dto.MemberDto;
-import 종합.homeShopping.service.MemberService;
+import 종합.shopping.model.dto.MemberDto;
+import 종합.shopping.service.MemberService;
 
 import java.util.ArrayList;
 

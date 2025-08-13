@@ -1,11 +1,9 @@
-package 종합.homeShopping.model.dao;
+package 종합.shopping.model.dao;
 
 
-import org.springframework.boot.context.event.SpringApplicationEvent;
 import org.springframework.stereotype.Repository;
-import 종합.homeShopping.model.dto.MemberDto;
+import 종합.shopping.model.dto.MemberDto;
 
-import java.lang.reflect.Member;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;

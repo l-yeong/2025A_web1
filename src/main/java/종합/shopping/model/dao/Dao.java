@@ -1,4 +1,4 @@
-package 종합.homeShopping.model.dao;
+package 종합.shopping.model.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

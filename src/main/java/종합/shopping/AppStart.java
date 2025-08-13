@@ -1,4 +1,4 @@
-package 종합.homeShopping;
+package 종합.shopping;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

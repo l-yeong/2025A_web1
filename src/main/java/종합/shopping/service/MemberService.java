@@ -1,9 +1,9 @@
-package 종합.homeShopping.service;
+package 종합.shopping.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import 종합.homeShopping.model.dao.MemberDao;
-import 종합.homeShopping.model.dto.MemberDto;
+import 종합.shopping.model.dao.MemberDao;
+import 종합.shopping.model.dto.MemberDto;
 
 import java.util.ArrayList;
 
