@@ -38,8 +38,21 @@ public class LoginController {
         Object obj = session.getAttribute("loginMno");
         //3. 타입변환 필요
         int loginMno = (int)obj; //서버톰캣(스프링) 를 재시작 하면 모든 세션정보는 초기화
+        System.out.println("[[로그인상태]]");
         System.out.println(loginMno);
         return true;
-    }
+    }//func end
+
+    @GetMapping("/logout")
+    public boolean logout(HttpServletRequest request){
+        //1. 세션 정보 가져오기
+        HttpSession session = request.getSession();
+        //2. 특정한 속성 제거하기
+        System.out.println("[[로그아웃상태]]");
+        session.removeAttribute("loginMno");
+        //2. 전체 속성제거 하기
+        //session.invalidate();
+        return true;
+    }//fucn end
 
 }//class end
