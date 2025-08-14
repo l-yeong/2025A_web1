@@ -52,6 +52,8 @@ public class MemberController {
     //회원정보
     @GetMapping("/info")
     public MemberDto info(HttpServletRequest request){
+        System.out.println("MemberController.info");
+        System.out.println("request = " + request);
         // 1.HttpServletRequest(요청정보)객체 에서 세션 객체 꺼내기
         HttpSession session = request.getSession();
         // 2. 만약에 비어있으면 비로그인 상태
@@ -77,6 +79,8 @@ public class MemberController {
     //회원정보수정
     @PutMapping("/update")
     public boolean _update(@RequestBody MemberDto memberDto, HttpServletRequest request){
+        System.out.println("MemberController._update");
+        System.out.println("memberDto = " + memberDto + ", request = " + request);
         //1. 세션 객체 꺼내기
         HttpSession session = request.getSession();
         //2. 만약에 세션이 없다면 비로그인상태:*수정 불가능
@@ -101,6 +105,7 @@ public class MemberController {
         Object obj = session.getAttribute("loginMno");
         int loginMno=(int)obj;
         boolean result = memberService.updatePassword(loginMno,map);
+        session.removeAttribute("loginMno"); //세션 초기화 (로그아웃)
         return result;
     }//func end
 
@@ -110,6 +115,8 @@ public class MemberController {
         //1. 매개변수로 받은 요청정보내 세션 객체를 확인 해서 없으면 비로그인 상태
         if(session==null||session.getAttribute("loginMno")==null){ return false;}
         int loginMno=(int)session.getAttribute("loginMno");
-        return memberService._delete(loginMno,oldpwd);
+        boolean result = memberService._delete(loginMno,oldpwd);
+        if(result==true) session.removeAttribute("loginMno"); //세션 초기화(로그아웃)
+        return result;
     }//func end
 }//class end
