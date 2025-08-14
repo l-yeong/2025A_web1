@@ -119,4 +119,13 @@ public class MemberController {
         if(result==true) session.removeAttribute("loginMno"); //세션 초기화(로그아웃)
         return result;
     }//func end
+
+    //아이디비밀번호찾기
+    @GetMapping("/search")
+    public MemberDto _search(@RequestParam String mname,String mphone){
+        System.out.println("MemberController._search");
+        System.out.println("mname = " + mname + ", mphone = " + mphone);
+        MemberDto result= memberService._search(mname,mphone);
+        return result;
+    }//func end
 }//class end

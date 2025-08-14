@@ -21,7 +21,7 @@
         <div class="phoneCheck"></div> 
         <button type="button" onclick="signup()">회원가입</button> <br/>
         <a href="/member/login.jsp">로그인하기</a>
-        <a href="/member/find.jsp">아이디/비밀번호 찾기</a>
+        <a href="/member/search.jsp">아이디/비밀번호 찾기</a>
     </div>
 
 </body>

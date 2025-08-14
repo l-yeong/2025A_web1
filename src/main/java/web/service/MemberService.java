@@ -53,5 +53,10 @@ public class MemberService {
         boolean result= memberDao._delete(mno,oldpwd);
         return result;
     }
+    //아이디비밀번호찾기
+    public MemberDto _search(String mname,String mphone){
+        MemberDto result= memberDao._search(mname,mphone);
+        return result;
+    }
 
 }//class end

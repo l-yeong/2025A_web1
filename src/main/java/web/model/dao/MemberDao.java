@@ -127,4 +127,23 @@ public class MemberDao extends Dao{
         }catch (Exception e) {System.out.println(e);}//catch end
         return false;
     }//func end
+    //아이디,비밀번호 찾기
+    public MemberDto _search(String mname,String mphone){
+        try{
+            String sql="select mid, mpwd from member where mname=? and mphone=?;";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1,mname);
+            ps.setString(2,mphone);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                MemberDto memberDto= new MemberDto();
+                memberDto.setMid(rs.getString("mid"));
+                memberDto.setMpwd(rs.getString("mpwd"));
+                return memberDto;
+            }//if end
+        }catch(Exception e){System.out.println(e);}//catch end
+        return null;
+    }//func end
 }//class end
+
+
