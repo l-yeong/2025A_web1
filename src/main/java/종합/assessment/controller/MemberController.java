@@ -1,9 +1,9 @@
-package 종합.shopping.controller;
+package 종합.assessment.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import 종합.shopping.model.dto.MemberDto;
-import 종합.shopping.service.MemberService;
+import 종합.assessment.model.dto.MemberDto;
+import 종합.assessment.service.MemberService;
 
 import java.util.ArrayList;
 
@@ -37,5 +37,14 @@ public class MemberController {
         System.out.println("memberDto = " + memberDto);
         return result;
     }//func end
+
+    //회원번호,가입일(자동발생)
+    @GetMapping("/auto")
+    public MemberDto auto(MemberDto memberDto){
+        System.out.println("MemberController.auto");
+        System.out.println("memberDto = " + memberDto);
+        MemberDto result = memberService.auto(memberDto);
+        return result;
+    }
 
 }//class end

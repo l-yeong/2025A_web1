@@ -1,9 +1,9 @@
-package 종합.shopping.service;
+package 종합.assessment.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import 종합.shopping.model.dao.MemberDao;
-import 종합.shopping.model.dto.MemberDto;
+import 종합.assessment.model.dao.MemberDao;
+import 종합.assessment.model.dto.MemberDto;
 
 import java.util.ArrayList;
 
@@ -30,4 +30,10 @@ public class MemberService {
         boolean result = memberDao.MemberUpdate(memberDto);
         return result;
     }//func end
+
+    //회원번호,가입일(자동발생)
+    public MemberDto auto(MemberDto memberDto){
+        MemberDto result = memberDao.auto(memberDto);
+        return result;
+    }
 }//class end

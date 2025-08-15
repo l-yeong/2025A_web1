@@ -1,8 +1,8 @@
-package 종합.shopping.model.dao;
+package 종합.assessment.model.dao;
 
 
 import org.springframework.stereotype.Repository;
-import 종합.shopping.model.dto.MemberDto;
+import 종합.assessment.model.dto.MemberDto;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +26,21 @@ public class MemberDao extends Dao {
         } catch(Exception e){System.out.println(e);}//catch end
         return false;
     }//func end
+
+    //회원번호,가입일(자동발생)
+    public MemberDto auto(MemberDto memberDto){
+        try{
+            String sql = "select custno, joindate from member_tbl_02 order by custno desc limit 1;";
+            PreparedStatement ps= conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                memberDto.setCustno(rs.getInt("custno"));
+                memberDto.setJoindate(rs.getString("joindate"));
+                return memberDto;
+            }
+        } catch (Exception e) {System.out.println(e);}//catch end
+        return null;
+    }
 
     //조회
     public ArrayList<MemberDto>MemberPrint(){
