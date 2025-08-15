@@ -11,7 +11,7 @@
     <jsp:include page="/shopping/menu.jsp"></jsp:include>
     <div>
         <h3></h3>
-        회원번호(자동발생):<input class="custno" value="<%= request.get %>" readonly/></br>
+        회원번호(자동발생):<input class="custno" /></br>
         회원성명:<input type="text" class="custname" /></br>
         회원전화:<input type="text" class="phone" /></br>
         회원주소:<input type="text" class="address" /></br>

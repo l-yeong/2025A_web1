@@ -1,4 +1,4 @@
-package 종합.shopping.model.dao;
+package 종합.assessment.model.dao;
 
 import org.springframework.stereotype.Repository;
 

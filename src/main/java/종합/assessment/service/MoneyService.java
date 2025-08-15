@@ -1,4 +1,4 @@
-package 종합.shopping.service;
+package 종합.assessment.service;
 
 import org.springframework.stereotype.Service;
 

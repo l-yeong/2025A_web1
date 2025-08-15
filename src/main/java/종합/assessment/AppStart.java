@@ -1,4 +1,4 @@
-package 종합.shopping;
+package 종합.assessment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

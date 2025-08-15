@@ -1,4 +1,4 @@
-package 종합.shopping.model.dto;
+package 종합.assessment.model.dto;
 
 import lombok.*;
 

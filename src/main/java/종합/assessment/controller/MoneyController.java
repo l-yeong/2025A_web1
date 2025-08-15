@@ -1,4 +1,4 @@
-package 종합.shopping.controller;
+package 종합.assessment.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
