@@ -128,15 +128,14 @@ public class MemberDao extends Dao{
         return false;
     }//func end
     //아이디,비밀번호 찾기
-    public MemberDto _search(String mname,String mphone){
+    public MemberDto _search(MemberDto memberDto){
         try{
             String sql="select mid, mpwd from member where mname=? and mphone=?;";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1,mname);
-            ps.setString(2,mphone);
+            ps.setString(1, memberDto.getMname());
+            ps.setString(2, memberDto.getMphone());
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                MemberDto memberDto= new MemberDto();
                 memberDto.setMid(rs.getString("mid"));
                 memberDto.setMpwd(rs.getString("mpwd"));
                 return memberDto;

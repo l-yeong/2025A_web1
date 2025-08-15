@@ -121,11 +121,13 @@ public class MemberController {
     }//func end
 
     //아이디비밀번호찾기
-    @GetMapping("/search")
-    public MemberDto _search(@RequestParam String mname,String mphone){
+    @PostMapping("/search")
+    public MemberDto _search(@RequestBody MemberDto memberDto){
         System.out.println("MemberController._search");
-        System.out.println("mname = " + mname + ", mphone = " + mphone);
-        MemberDto result= memberService._search(mname,mphone);
-        return result;
+        System.out.println("memberDto = " + memberDto);
+        MemberDto result= memberService._search(memberDto);
+        if(result!=null){
+            return result;}
+        else{return null;}//if end
     }//func end
 }//class end

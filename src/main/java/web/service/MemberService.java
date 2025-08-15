@@ -54,8 +54,8 @@ public class MemberService {
         return result;
     }
     //아이디비밀번호찾기
-    public MemberDto _search(String mname,String mphone){
-        MemberDto result= memberDao._search(mname,mphone);
+    public MemberDto _search(MemberDto memberDto){
+        MemberDto result= memberDao._search(memberDto);
         return result;
     }
 
