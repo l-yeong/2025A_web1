@@ -18,5 +18,5 @@
 
 
 </body>
-<script src='search.js'></script>
+<script src='/js/member/search.js'></script>
 </html>
