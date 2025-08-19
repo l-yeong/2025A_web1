@@ -1,81 +1,80 @@
-console.log( 'data.js open');
-
-// [2] 사업자등록정보 상태조회 서비스
-const dataAPI2 = async() =>{
-    // 1. 데이터 준비
-    const b_no = document.querySelector('.b_no').value; // 입력받은 사업자번호
-    const  obj ={
-        "b_no" : [ b_no ] // -없는 사업자번호, 더조은학원(6408101354)으로 테스트
-    }  // var : 변수명이 중복 가능한 변수 타입 , 과거 많이 사용됨, 최근에는 let 키워드가 사용됨.
-    // 2. fetch
-    const option = {
-        method : "POST" ,
-        headers : {"Content-Type" : "application/json"} ,
-        body:JSON.stringify(obj)
-    }
-const serviceKey = "GZ1hAL3RvCErjAecOI2NwxIiWMJ%2BcOI4Ktgb1SnLxMxT6s%2BlWQ5GBnZMage7LYskXe5kDkChczEyNsTKxypnvw%3D%3D"
-    const URL = "https://api.odcloud.kr/api/15102672/v1/uddi:d26dabc4-e094-463d-a4b1-cab3af66bb6d?page=1&perPage=38&serviceKey="
-    const response = await fetch( URL+serviceKey , option );
+console.log( 'datamap.js');
+// [1] 공공데이터 , 인천시 동구 약국 , https://www.data.go.kr/data/15051492/fileData.do#tab-layer-openapi
+const dataAPI = async()=>{
+    // 1.공공데이터 준비
+    const serviceKey = "nwPZ%2F9Z3sVtcxGNXxOZfOXwnivybRXYmyoIDyvU%2BVDssxywHNMU2tA55Xa8zvHWK0bninVkiuZAA4550BDqIbQ%3D%3D"
+    const URL = "https://api.odcloud.kr/api/15051492/v1/uddi:852bbc11-63ed-493e-ab09-caaaf54fd144?page=1&perPage=34&serviceKey="
+    // 2. fetch 실행
+    const response = await fetch( URL+serviceKey , { method : "GET"} );
     const data = await response.json();
-    alert( data.data[0]["tax_type"] ) // 속성명이 특수문자가 포함된 경우 .(접근연산자) 불가능.
+    console.log( data );
+    // 3. 사이드바 정보 출력하기(위도/경도 제외한->지도에서 사용) , 소재지도로명주소/약국명/전화번호
+    const sidebar = document.querySelector('#sidebar');
+    let html = '';
+        data.data.forEach( (value)=>{
+            html += `<div id="store">
+                        <div> 약국명 :  ${ value.약국명 } </div>
+                        <div> 전화번호 : ${ value.전화번호 } </div>
+                        <div> 주소 : ${ value.소재지도로명주소 } </div>
+                    </div>`
+        });
+    sidebar.innerHTML = html;
+}
+dataAPI();
 
-} // func end
+// [2] 카카오맵 클러스터 라이브러리 , https://apis.map.kakao.com/web/sample/addClustererClickEvent
+const kakaMap =  async ()=>{
 
-// [1] 인천 부평구 주유소 현황
-const dataAPI1 = async()=>{
-    // (1) 요청 URL  , perPage=10 -> perPage=38 변경
-const serviceKey = "GZ1hAL3RvCErjAecOI2NwxIiWMJ%2BcOI4Ktgb1SnLxMxT6s%2BlWQ5GBnZMage7LYskXe5kDkChczEyNsTKxypnvw%3D%3D" // 일반코드
-    const URL = "https://api.odcloud.kr/api/15102672/v1/uddi:d26dabc4-e094-463d-a4b1-cab3af66bb6d?page=1&perPage=38&serviceKey="
-    // (2) fecth 활용한 공공데이터 API 요청
-    const option = { method : "GET" }
-    const response = await fetch( URL+serviceKey , option );
-    const data = await response.json();
-    console.log( data ); // 요청 결과값을 CONSOLE **출력후 분석**하여 사용한다.
-    // perPage : 페이지당 가져올 데이터수, data : 실질적인 데이터가 들어오는 속성명(주유소 목록)
-    console.log( data.data );
-    // (3) JSP(html) 표에 출력하기
-    const dataTbody = document.querySelector('#dataTbody');  // 1. 어디에
-    let html = ''; // 2. 무엇을  , array.forEach( ( value ) => {} ) : 리스트내 요소를 하나씩 변수(value)에 반복대입
-    data.data.forEach( ( value )=> { // vs for( let i = 0 ; i< data.data.length ; i++ ){ let value = data.data[i]; }
-        html += `<tr>
-                    <td> ${ value.연번 } </td>  <td> ${ value.상호 } </td>
-                    <td> ${ value.업종 } </td>   <td> ${ value.전화번호 } </td>
-                    <td> ${ value['주소'] } </td>
-                </tr>`
+    // (1) 지도를 표시할 div , 지도의 중심좌표
+    var map = new kakao.maps.Map(document.getElementById('map'),
+    { center : new kakao.maps.LatLng(36.2683, 127.6358), level : 10  });
+
+    // (2)마커 클러스터러( 여러가 마커가 겹칠때 도형으로 마커수를 표현 ) 를 생성합니다
+    var clusterer = new kakao.maps.MarkerClusterer({
+        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+        minLevel: 4, // 클러스터 할 최소 지도 레벨
+        disableClickZoom: true // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
     });
-    dataTbody.innerHTML = html;// 3. 출력
-} // func end
-dataAPI1(); // JSP 열릴때 최초 1번 실행
 
-/*
-    1. https://www.data.go.kr/
-    2. 로그인 -> [카카오/네이버 간편로그인 ] 권장 아니면 회원가입진행
-    3. 검색창 "부평구 주유소" 검색 -> "인천광역시 부평구_주유소 현황" 클릭 -> [Open API] 탭 클릭
-    4. https://www.data.go.kr/data/15102672/fileData.do#tab-layer-openapi
-    5. JSON [ 활용신청 ]
-    6. 활용목적 : 연구(논문 등) , 웹개발 테스트중 입니다.
-       이용허락범위 :  [V] 동의합니다. , 체크
-       [ 활용신청 ]
-    7. 마이페이지 -> 데이터 활용 -> Open API -> 활용신청 현황 -> 승인된 API 확인후 클릭
-    8. 개발계정 상세보기
-        [인증키 설정]
-            ApiKeyAuth (apiKey) : 일반 인증키(Encoding) 를 복사하여 붙여넣기
-            ApiKeyAuth2 (apiKey) : 일반 인증키(Decoding) 를 복사하여 붙여넣기
-        [ API 목록 ] 선택후 [ OpenAPI 실행 준비 ] -> [ OpenAPI 호출 ]
-    예] 강사가 신청한 API요청주소
-    https://api.odcloud.kr/api/15102672/v1/uddi:d26dabc4-e094-463d-a4b1-cab3af66bb6d?page=1&perPage=10&serviceKey=nwPZ%2F9Z3sVtcxGNXxOZfOXwnivybRXYmyoIDyvU%2BVDssxywHNMU2tA55Xa8zvHWK0bninVkiuZAA4550BDqIbQ%3D%3D
-*/
+    // (3) FETCH 이용한 공공데이터 자료 활용
+    const serviceKey = "nwPZ%2F9Z3sVtcxGNXxOZfOXwnivybRXYmyoIDyvU%2BVDssxywHNMU2tA55Xa8zvHWK0bninVkiuZAA4550BDqIbQ%3D%3D"
+    const URL = "https://api.odcloud.kr/api/15051492/v1/uddi:852bbc11-63ed-493e-ab09-caaaf54fd144?page=1&perPage=34&serviceKey="
+    const response = await fetch( URL+serviceKey , { method : "GET"} );
+    const data = await response.json(); console.log( data );
 
-/*
-    1. https://www.data.go.kr/
-    2. 로그인 -> [카카오/네이버 간편로그인 ] 권장 아니면 회원가입진행
-    3. 검색창 "사업자 상태 조회" 검색 -> "국세청_사업자등록정보 진위확인 및 상태조회 서비스" 클릭
-    4. https://www.data.go.kr/data/15081808/openapi.do
-    5. JSON [ 활용신청 ]
-    6. 활용목적 : 연구(논문 등) , 웹개발 테스트중 입니다.
-       이용허락범위 :  [V] 동의합니다. , 체크
-       [ 활용신청 ]
-    7. 마이페이지 -> 데이터 활용 -> Open API -> 활용신청 현황 -> 승인된 API 확인후 클릭
-    8. 개발계정 상세보기
-        [ 상태조회 샘플코드 ] 참고
-*/
+    // (4) map 반복문을 이용하여 마커를 하나씩 생성하여 return 한 마커를 markers 변수(배열)에 대입한다.
+    let markers = data.data.map( ( value ) => { // forEach 리턴없다 vs map 리턴있다.
+        // (5-1) 마커 생성
+        let marker = new kakao.maps.Marker({
+            position : new kakao.maps.LatLng( value.위도, value.경도 ) // 위도( Latitude ), 경도( Longitude ) 약어
+        });
+        // (5-2)마커 클릭 이벤트 넣기. //kakao.maps.event.addListener( marker , 'click' , ()=>{})
+        kakao.maps.event.addListener( marker , 'click' , ()=>{
+            // (*) 내가 클릭한 마커의 약국 정보를 사이드바(특정2. html)에 출력하기
+            const sidebar = document.querySelector('#sidebar');
+            let html = ` <button type="button" onclick="dataAPI()"> 전체보기 </button>
+                        <div id="store">
+                            <div> 약국명 :  ${ value.약국명 } </div>
+                            <div> 전화번호 : ${ value.전화번호 } </div>
+                            <div> 주소 : ${ value.소재지도로명주소 } </div>
+                        </div>`;
+            sidebar.innerHTML = html;
+        })
+        // (5-3) 마커 리턴
+        return marker;
+    }); // map end
+
+    // (6) 여러개 마커를 가진 markers 변수를 클러스터에 등록
+    clusterer.addMarkers(markers);
+
+    // (7)마커 클러스터러에 클릭이벤트를 등록합니다
+    kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
+        // 현재 지도 레벨에서 1레벨 확대한 레벨
+        var level = map.getLevel()-1;
+        // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
+        map.setLevel(level, {anchor: cluster.getCenter()});
+    });
+
+}
+kakaMap();
