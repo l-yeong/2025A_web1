@@ -59,3 +59,5 @@ INSERT INTO productimg (pimgname, pno) VALUES
 select * from member;
 select * from product;
 select * from productimg;
+
+select * from product,productimg;
