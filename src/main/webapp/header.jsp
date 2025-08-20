@@ -20,6 +20,8 @@
                  <li> <a href="/kakao/map.jsp"> 카카오지도 </a> </li>
                  <li> <a href="/kakao/datamap.jsp"> 데이터지도 </a> </li>
                  <li> <a href="/kakao/school.jsp"> 연수구관내학교 </a> </li>
+                 <li> <a href="/product/create.jsp"> 물품등록 </a> </li>
+                 <li> <a href="/product/list.jsp"> 제품조회 </a> </li>
             </ul>
             <ul id="log-menu">
 
