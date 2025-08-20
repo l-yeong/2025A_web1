@@ -6,6 +6,8 @@ import 종합.assessment.model.dao.MemberDao;
 import 종합.assessment.model.dto.MemberDto;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class MemberService {
@@ -35,5 +37,11 @@ public class MemberService {
     public MemberDto auto(MemberDto memberDto){
         MemberDto result = memberDao.auto(memberDto);
         return result;
-    }
+    }//func end
+
+    //개별조회
+    public MemberDto MemberFind(int custno){
+        MemberDto result = memberDao.MemberFind(custno);
+        return result;
+    }//func end
 }//class end

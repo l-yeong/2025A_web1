@@ -2,7 +2,7 @@ console.log("write.js")
 
 const auto = async()=>{
 
-    const response= await fetch('/member/auto')
+    const response= await fetch('/assessment/auto')
     const data = await response.json();
     document.querySelector(".custno").innerHTML=data.custno; // 회원번호
     document.querySelector(".joindate").innerHTML=data.joindate; // 가입일
@@ -24,11 +24,12 @@ const memberWrite= async() =>{
         body:JSON.stringify(object)
     }//option end
 
-    const response = await fetch("/member",option)
+    const response = await fetch("/assessment/add",option)
     const data=await response.json();
 
     if(data==true){
         alert("회원등록이 완료 되었습니다.");
+        location.href=`/assessment/index.jsp`;
     }else{
         alert("회원성명이 입력되지 않았습니다.")
     }//if end

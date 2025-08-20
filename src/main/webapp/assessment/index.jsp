@@ -9,7 +9,7 @@
 </head>
 <body>
     <jsp:include page="/assessment/header.jsp"></jsp:include>
-    <jsp:include page="/assessment/memberWrite.jsp"></jsp:include>
+    <jsp:include page="/assessment/menu.jsp"></jsp:include>
     <h4>쇼핑몰 회원관리 프로그램</h3>
     <h3>쇼핑몰 회원정보와 회원매출정보 데이터베이스를 구축하고 회원관리 프로그램을 작성 하는 프로그램
         프로그램 작성 순서

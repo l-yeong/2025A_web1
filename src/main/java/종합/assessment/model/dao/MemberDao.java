@@ -7,6 +7,9 @@ import 종합.assessment.model.dto.MemberDto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class MemberDao extends Dao {
@@ -23,6 +26,7 @@ public class MemberDao extends Dao {
             ps.setString(5,memberDto.getCity());
             int count = ps.executeUpdate();
             if(count==1)return true;
+            ps.close();
         } catch(Exception e){System.out.println(e);}//catch end
         return false;
     }//func end
@@ -38,6 +42,8 @@ public class MemberDao extends Dao {
                 memberDto.setJoindate(rs.getString("joindate"));
                 return memberDto;
             }
+            ps.close();
+            rs.close();
         } catch (Exception e) {System.out.println(e);}//catch end
         return null;
     }
@@ -60,9 +66,35 @@ public class MemberDao extends Dao {
                 MemberDto memberDto = new MemberDto(custno,custname,phone,address,joindate,grade,city);
                 list.add(memberDto);
             }//while end
+            ps.close();
+            rs.close();
         } catch (Exception e) {System.out.println(e);}//catch end
         return list;
     }//func end
+
+    //개별 조회
+    public MemberDto MemberFind(int custno){
+        try{
+            String sql = "select *from MEMBER_TBL_02 where custno=?;";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1,custno);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                MemberDto memberDto = new MemberDto();
+                memberDto.setCustno(rs.getInt(1));
+                memberDto.setCustname(rs.getString(2));
+                memberDto.setPhone(rs.getString(3));
+                memberDto.setAddress(rs.getString(4));
+                memberDto.setJoindate(rs.getString(5));
+                memberDto.setGrade(rs.getString(6));
+                memberDto.setCity(rs.getString(7));
+                return memberDto;
+            }
+            ps.close();
+            rs.close();
+        } catch (Exception e) {System.out.println(e);}//catch end
+        return null;
+    }// func end
 
     //수정
     public boolean MemberUpdate(MemberDto memberDto){
@@ -77,6 +109,7 @@ public class MemberDao extends Dao {
             ps.setInt(6,memberDto.getCustno());
             int count = ps.executeUpdate();
             if(count==1)return true;
+            ps.close();
         } catch (Exception e) {System.out.println(e);}//catch end
         return false;
     }//func end

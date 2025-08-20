@@ -19,7 +19,7 @@
             <div>가입등급(A:VIP,B:일반,C:직원):<input type="text" class="grade" /></div>
             <div>도시코드:<input type="text" class="city" /></div>
             <button type="button" onclick="memberWrite()">등록</button>
-            <button type="button" onclick="memberList()">조회</button>
+            <a href="/assessment/memberList.jsp"><button type="button">조회</button></a>
     </div>
     <script src="/assessment/memberWrite.js"></script>
 </body>

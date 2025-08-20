@@ -6,14 +6,16 @@ import 종합.assessment.model.dto.MemberDto;
 import 종합.assessment.service.MemberService;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/assessment")
 public class MemberController {
     @Autowired MemberService memberService;
 
     //등록
-    @PostMapping("")
+    @PostMapping("/add")
     public boolean MemberWrite(@RequestBody MemberDto memberDto){
         boolean result = memberService.MemberWrite(memberDto);
         System.out.println("MemberController.MemberWrite");
@@ -22,7 +24,7 @@ public class MemberController {
     }//func end
 
     //조회
-    @GetMapping("")
+    @GetMapping("/list")
     public ArrayList<MemberDto> MemberPrint(){
         ArrayList<MemberDto> result= memberService.MemberPrint();
         System.out.println("MemberController.MemberPrint");
@@ -30,7 +32,7 @@ public class MemberController {
     }//func end
 
     //수정
-    @PutMapping("")
+    @PutMapping("/update")
     public boolean MemberUpdate(@RequestBody MemberDto memberDto){
         boolean result= memberService.MemberUpdate(memberDto);
         System.out.println("MemberController.MemberUpdate");
@@ -45,6 +47,15 @@ public class MemberController {
         System.out.println("memberDto = " + memberDto);
         MemberDto result = memberService.auto(memberDto);
         return result;
-    }
+    }//func end
+
+    @GetMapping("/find")
+    public MemberDto MemberFind(@RequestParam int custno){
+        System.out.println("MemberController.MemberFind");
+        System.out.println("custno = " + custno);
+        MemberDto result = memberService.MemberFind(custno);
+        return result;
+    }//func end
+
 
 }//class end
