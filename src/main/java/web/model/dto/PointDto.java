@@ -1,4 +1,4 @@
-package 종합.point.model.dto;
+package web.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class PointMemberDto {
+public class PointDto {
     private int mno;
     private String mid;
     private String mpwd;
