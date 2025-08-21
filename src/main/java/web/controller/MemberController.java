@@ -130,13 +130,11 @@ public class MemberController {
         else{return new MemberDto(); }//if end
     }//func end
 
-    @PostMapping("/pwd")
-    public MemberDto searchPwd(@RequestBody MemberDto memberDto){
+    @GetMapping("/pwd")
+    public Map<String,String> searchPwd(@RequestParam Map<String,String>map){
         System.out.println("MemberController.searchPwd");
-        System.out.println("memberDto = " + memberDto);
-        MemberDto result = memberService.searchPwd(memberDto);
-        if (result!=null){return result;}
-        else{return new MemberDto();}//if end
+        Map<String,String> result = memberService.searchPwd(map);
+        return result;
     }//func end
 
 }//class end

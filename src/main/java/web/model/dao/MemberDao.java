@@ -144,19 +144,17 @@ public class MemberDao extends Dao{
     }//func end
 
     //비밀번호 찾기
-    public MemberDto searchPwd(MemberDto memberDto){
-        try{
-            String sql="select mpwd from member where mid=? and mphone=?;";
+    public boolean searchPwd(Map<String,String>map) {
+        try {
+            String sql = "update member set mpwd=? where mid=? and mphone=?;";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, memberDto.getMid());
-            ps.setString(2, memberDto.getMphone());
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                memberDto.setMpwd(rs.getString("mpwd"));
-                return memberDto;
-            }//if end
-        }catch(Exception e){System.out.println(e);}//catch end
-        return null;
+            ps.setString(1,map.get("mpwd"));
+            ps.setString(2,map.get("mid"));
+            ps.setString(3,map.get("mphone"));
+            int count = ps.executeUpdate();
+            if(count==1)return true;
+        } catch (Exception e) {System.out.println(e);}//catch end
+        return false;
     }//func end
 }//class end
 
