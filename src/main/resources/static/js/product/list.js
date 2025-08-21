@@ -39,7 +39,28 @@ const position = await myPosition(); // js/kakao/position.js 파일의 함수 �
         // 3-2 마커 클릭 이벤트
         kakao.maps.event.addListener(marker, 'click', ()=> {
       // 마커 위에 인포윈도우를 표시합니다
-      alert(`클릭한 제품명은:${product.pname}`)
+      alert(`클릭한 제품명은:${product.pname}`);
+
+      //************* 업로드된 이미지 출력 *****************
+      //1. 어디에
+      const productDiv = document.querySelector('#productDiv');
+      //2. 무엇을 , JSP(webapp 이하), css/js/img 등등(static 이하)
+      let html =``;
+
+            //* 이미지가 없는 경우
+            if(product.images.length==0){
+                html += `<img src="/upload/default.png"/>`
+            }else{
+            //* 이미지 다수일때 반복문을 이용한 여러개 img 마크업 만들기
+            for(let i=0; i<product.images.length; i++){
+                let img = product.images[i];
+                html +=`<img src ="/upload/${img}"/>`
+            }//for end
+        }//if end
+
+      //출력
+      productDiv.innerHTML=html;
+
         });
         //3-3 마커 반환
         return marker;
