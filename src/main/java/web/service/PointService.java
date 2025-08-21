@@ -8,6 +8,7 @@ import web.model.dto.PointDto;
 @Service
 public class PointService {
     @Autowired PointDao pointDao;
+
     //회원가입 포인트 적립
     public int pointSignup(PointDto pointDto){
         int result = pointDao.pointSignup(pointDto);

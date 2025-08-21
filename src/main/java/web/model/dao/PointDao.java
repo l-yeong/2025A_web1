@@ -12,9 +12,9 @@ import java.sql.Statement;
 public class PointDao extends Dao {
 
     //회원가입 포인트 적립
-    public int pointSignup(PointDto pointDto){
+    public int  pointSignup(PointDto pointDto){
         try{
-            String sql = "INSERT INTO pointlog (mno, plpoint, plcomment) VALUES (LAST_INSERT_ID(), 1000, '회원가입');";
+            String sql = "INSERT INTO pointlog (plno, plpoint, plcomment) VALUES (?, 1000, '회원가입');";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, pointDto.getMname());
             int count = ps.executeUpdate();

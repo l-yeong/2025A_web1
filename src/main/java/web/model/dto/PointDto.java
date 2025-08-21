@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class PointDto {
     private int mno;
+    private int plno;
     private String mid;
     private String mpwd;
     private String mname;
