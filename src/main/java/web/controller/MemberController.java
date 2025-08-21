@@ -120,7 +120,7 @@ public class MemberController {
         return result;
     }//func end
 
-    //아이디비밀번호찾기
+    //아이디찾기
     @PostMapping("/id")
     public MemberDto searchId(@RequestBody MemberDto memberDto){
         System.out.println("MemberController._search");
@@ -130,6 +130,7 @@ public class MemberController {
         else{return new MemberDto(); }//if end
     }//func end
 
+    //비밀번호찾기
     @GetMapping("/pwd")
     public Map<String,String> searchPwd(@RequestParam Map<String,String>map){
         System.out.println("MemberController.searchPwd");
