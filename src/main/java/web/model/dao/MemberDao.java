@@ -156,6 +156,7 @@ public class MemberDao extends Dao{
         } catch (Exception e) {System.out.println(e);}//catch end
         return false;
     }//func end
+
 }//class end
 
 
