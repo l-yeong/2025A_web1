@@ -52,11 +52,16 @@ public class MemberService {
     public boolean _delete(int mno, String oldpwd){
         boolean result= memberDao._delete(mno,oldpwd);
         return result;
-    }
-    //아이디비밀번호찾기
-    public MemberDto _search(MemberDto memberDto){
-        MemberDto result= memberDao._search(memberDto);
+    }//func end
+    //아이디 찾기
+    public MemberDto searchId(MemberDto memberDto){
+        MemberDto result= memberDao.searchId(memberDto);
         return result;
-    }
+    }//func end
+    //비밀번호 찾기
+    public MemberDto searchPwd(MemberDto memberDto) {
+        MemberDto result = memberDao.searchPwd(memberDto);
+        return result;
+    }//func end
 
 }//class end
