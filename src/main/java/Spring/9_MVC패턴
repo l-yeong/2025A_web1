@@ -21,6 +21,7 @@
 
         2] CONTROLLER   : @RestController @Controller
             -> 역할 : [주] HTTP 통신 (요청/응답), 타입 관리변환, VIEW와 SERVICE 중계 (타입) 유효성검사, 예외처리
+            -> 사용자가/클라이언트 1번의 요청은 하나의 controller 위임
             * 유효성검사(유지보수단계에서도 계속) 위치: JS, CONTROLLER, SERVICE, SQL
 
         3] SERVICE      : @Service
