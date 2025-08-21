@@ -26,23 +26,13 @@ const searchPwd = async () => {
     try{
     const mid = document.querySelector('.mid').value;
     const mphone = document.querySelector('.mphone-pwd').value;
-    const obj = { mid, mphone };
+    
     console.log(mid);
     console.log(mphone);
 
-    const option = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(obj)
-    }
-
-    const response = await fetch("/member/pwd", option);
+    const response = await fetch(`/member/pwd?mid=${mid}&mphone=${mphone}`);
     const data = await response.json();
 
-    if (data && data.mid && data.mphone) {
-        alert(`비밀번호:${data.mpwd}`);
-    } else {
-        alert("입력한 정보가 일치 하지 않습니다.");
-    }//if end
+    alert(data.msg);
     }catch(error){console.log(error)}//catch end
 }//func end
