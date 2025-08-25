@@ -10,8 +10,8 @@ public class PointService {
     @Autowired PointDao pointDao;
 
     //회원가입 포인트 적립
-    public int pointSignup(PointDto pointDto){
-        int result = pointDao.pointSignup(pointDto);
+    public boolean pointSignup(PointDto pointDto){
+        boolean result = pointDao.pointSignup(pointDto);
         return result;
     }//func end
 

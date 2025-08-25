@@ -10,9 +10,7 @@ import lombok.NoArgsConstructor;
 public class PointDto {
     private int mno;
     private int plno;
-    private String mid;
-    private String mpwd;
-    private String mname;
-    private String mphone;
-    private String mdate;
+    private int plpoint;
+    private String plcomment;
+    private String pldate;
 }//class end
