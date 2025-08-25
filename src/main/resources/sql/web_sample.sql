@@ -16,6 +16,7 @@ CREATE TABLE member (
 
 -- 샘플 데이터 삽입
 INSERT INTO member (mid, mpwd, mname, mphone, mdate) VALUES
+('test','test','test','test','2025-08-01 14:10:00'),
 ('qwe123',  'asd1234', '유재석', '010-1234-1234', '2025-08-01 14:10:00'),
 ('hong123',  'pass1234', '홍길동', '010-1234-5678', '2025-08-01 14:20:00'),
 ('kimlove',  'qwer5678', '김사랑', '010-9876-5432', '2025-08-02 09:15:00'),
@@ -255,3 +256,5 @@ INSERT INTO reply (rcontent, mno, pno) VALUES
 ('더 많은 자료를 찾을 수 있을까요?', 4, 2);
 
 select * from reply;
+
+-- SELECT *FROM post p INNER JOIN member m  on  p.mno=m.mno where p.cno=? order by cno desc limit ?,?;
