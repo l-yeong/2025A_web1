@@ -75,4 +75,27 @@ public class PostService {
         pageDto.setData(postList);          //페이징한 게시물 리스트
         return pageDto;
     }//func end
+
+    //[3-1]게시물 개별 정보 조회
+    public PostDto getPost(int pno){
+        System.out.println("PostService.getPost");
+        System.out.println("pno = " + pno);
+        PostDto result = postDao.getPost(pno);
+        return result;
+    }//func end
+
+    //[3-2]게시물 조회수 1증가
+    public void incrementView(int pno){
+        postDao.incrementView(pno);
+    }//func end
+
+    //[4] 게시물 개별 삭제
+    public boolean deletePost(int pno){
+        return postDao.deletePost(pno);
+    }//func end
+
+    //[5] 게시물 개별 수정
+    public int updatePost(PostDto postDto) {
+        return postDao.updatePost(postDto);
+    }//func end
 }//class end
