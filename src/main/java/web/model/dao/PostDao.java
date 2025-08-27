@@ -76,4 +76,55 @@ public class PostDao extends Dao {
         } catch (Exception e) {System.out.println(e);}//catch end
         return list;
     }// func end
+
+    //[2-3] 카테고리별 *검색* 게시물수
+    public int getTotalCountSearch(int cno,String key,String keyword){
+        try{
+            String sql = " select count(*) from post where cno=? ";
+            //key(속성명)에 따른 sql 추가
+            if(key.equals("ptitle")){sql+=" and ptitle like ? ";}
+            else if(key.equals("pcontent")){sql+=" and pcontent like ? ";}
+            //그외 검색속성이 존재 하면 추가 한다.
+            System.out.println("[확인] 동적 SQL: "+sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1,cno);
+            ps.setString(2,"%"+keyword+"%"); // SQL 에서 포함된 비교는 LIKE %키워드% 사용된다.
+            ResultSet  rs = ps.executeQuery();
+            if(rs.next()){ return rs.getInt(1);}
+        }catch(Exception e){System.out.println(e);}//catch end
+        return 0;
+    }//func end
+
+    //[2-4] 카테고리별 *검색* 전체 게시물 정보 조회
+    public List<PostDto> findAllSearch(int cno, int startRow, int count, String key, String keyword){
+        List<PostDto> list = new ArrayList<>();
+        try{
+            String sql = " select *from post p inner join member m on m.mno = p.mno where cno = ? ";
+            if(key.equals("ptitle")){sql+=" and ptitle like ? ";}
+            else if(key.equals("pcontent")){sql+= " and pcontent like ? ";}
+            //그외(정렬/페이징)
+            sql += " order by pno desc limit ? , ? ";
+            System.out.println("[확인] 동적 SQL: "+sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1,cno);
+            ps.setString(2,"%"+keyword+"%");
+            ps.setInt(3,startRow);
+            ps.setInt(4,count);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                PostDto postDto = new PostDto();
+                postDto.setMno(rs.getInt("mno"));
+                postDto.setCno(rs.getInt("cno"));
+                postDto.setPcontent(rs.getString("pcontent"));
+                postDto.setPdate(rs.getString("pdate"));
+                postDto.setPview(rs.getInt("pview"));
+                postDto.setPno(rs.getInt("pno"));
+                postDto.setPtitle(rs.getString("ptitle"));
+                postDto.setMid(rs.getString("mid"));
+                list.add(postDto);
+            }//while end
+        } catch (Exception e) {System.out.println(e);}//catch end
+        return list;
+    }//func end
+
 }//class end

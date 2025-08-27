@@ -30,8 +30,12 @@ public class PostController {
     @GetMapping("")// URL: localhost:8080/post?cno=1&page=1&count=5
     public PageDto findAllFind(@RequestParam (defaultValue = "1") int cno,
                                @RequestParam (defaultValue = "1") int page,
-                               @RequestParam (defaultValue = "5") int count){
-        //만약에 UTL 주소상의 쿼리스트링 매개변수가 없으면 defaultValue속성으로 기본값 대입 할수 있다.
-        return postService.findAllPost(cno,page,count);
+                               @RequestParam (defaultValue = "5") int count,
+                               @RequestParam (required = false) String key,
+                               @RequestParam (required = false) String keyword){
+
+        //만약에 URL 주소상의 지정한 쿼리스트링 매개변수가 없으면 defaultValue 속성으로 기본값 대입 할수 있다.
+        //만약에 URL 주소상의 지정한 쿼리스트링 매개변수가 존재하는 조건이 필수가 아닐때 required = false; 속성을 사용한다.
+        return postService.findAllPost(cno,page,count,key,keyword);
     }//func end
 }//class end

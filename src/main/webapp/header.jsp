@@ -22,6 +22,13 @@
                  <li> <a href="/kakao/school.jsp"> 연수구관내학교 </a> </li>
                  <li> <a href="/product/create.jsp"> 물품등록 </a> </li>
                  <li> <a href="/product/list.jsp"> 제품조회 </a> </li>
+
+
+                 <li> <a href="/post/post.jsp?cno=1"> 뉴스 </a> </li>
+                 <li> <a href="/post/post.jsp?cno=2"> 이벤트 </a> </li>
+                 <li> <a href="/post/post.jsp?cno=3"> FAQ </a> </li>
+                 <li> <a href="/post/post.jsp?cno=4"> 튜토리얼 </a> </li>
+                 <li> <a href="/post/post.jsp?cno=5"> 사용자리뷰 </a> </li>
             </ul>
             <ul id="log-menu">
 
