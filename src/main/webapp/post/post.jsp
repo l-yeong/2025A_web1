@@ -15,7 +15,7 @@
 
         <div id="container">
             <div>
-                <button onclick="location.href='write.jsp'">글쓰기</button>
+                <button onclick="location.href='/write/write.jsp'">글쓰기</button>
             </div>
         </div>
 
