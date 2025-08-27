@@ -1,7 +1,6 @@
 package web.model.dao;
 
 import org.springframework.stereotype.Repository;
-import 종합.point.model.dao.Dao;
 import web.model.dto.PointDto;
 
 import java.sql.PreparedStatement;
