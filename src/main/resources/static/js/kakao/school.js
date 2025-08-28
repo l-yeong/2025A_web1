@@ -26,7 +26,7 @@ const kakaMap =  async ()=>{
 
     // (1) 지도를 표시할 div , 지도의 중심좌표
     var map = new kakao.maps.Map(document.getElementById('map'),
-    { center : new kakao.maps.LatLng(36.2683, 127.6358), level : 10  });
+    { center : new kakao.maps.LatLng(37.493847, 126.724759), level : 3  });
 
     // (2)마커 클러스터러( 여러가 마커가 겹칠때 도형으로 마커수를 표현 ) 를 생성합니다
     var clusterer = new kakao.maps.MarkerClusterer({
