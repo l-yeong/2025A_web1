@@ -9,6 +9,7 @@ import web.service.PostService;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -96,5 +97,20 @@ public class PostController {
         System.out.println("PostController.updatePost");
         System.out.println("postDto = " + postDto);
         return postService.updatePost(postDto);
+    }//func end
+
+    //[6] 게시판 댓글 등록
+    @PostMapping("/reply")
+    public int writeReply(@RequestBody Map<String,String>reply, HttpSession session){
+        if(session.getAttribute("loginMno")==null)return 0;
+        int loginMno = (int)session.getAttribute("loginMno");
+        reply.put("mno",loginMno+""); // ??+"", 로그인된 회원번호를 map 추가
+        return postService.writeReply(reply);
+    }//func end
+
+    //[7] 댓글 전체 조회
+    @GetMapping("/reply")
+    public List<Map<String,String>> findAllReply(@RequestParam int pno){
+        return postService.findAllReply(pno);
     }//func end
 }//class end

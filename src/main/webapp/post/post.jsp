@@ -31,11 +31,7 @@
             </thead>
             <tbody id="postTbody">
                 <tr>
-                    <td> 1 </td>
-                    <td> 테스트 </td>
-                    <td> 유재석 </td>
-                    <td> 2025-08-26 </td>
-                    <td> 1 </td>
+                    
                 </tr>
             </tbody>
         </table>

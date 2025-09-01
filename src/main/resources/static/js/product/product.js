@@ -59,12 +59,13 @@ const onCreate = async()=>{
     // *위도경도는 폼 안에서 입력 받은 형식이 아닌 JS에서 표현한 것으로 직접 폼에 넣기 .append("속성명",값)
     productFormData.append('plat',latlng.getLat()); //위도, '[1]' 함수에서 구한 위도경도 변수내 위도
     productFormData.append('plng',latlng.getLng()); //경도, '[1]' 함수에서 구한 위도경도 변수내 경도
-
+    
 
     // fetch 보내기
     const option ={method:"POST",body:productFormData}; //header 생략 가능
     const response = await fetch('/product/create', option);
     const data = await response.json();
+    console.log(data);
 
     if(data > 0){
         alert('등록 성공');

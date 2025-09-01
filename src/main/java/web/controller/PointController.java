@@ -10,8 +10,7 @@ import web.service.PointService;
 @RestController
 @RequestMapping("/point")
 public class PointController {
-    @Autowired
-    PointService pointService;
+    @Autowired PointService pointService;
 
 
     //회원가입 포인트 적립

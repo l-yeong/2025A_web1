@@ -13,8 +13,8 @@ const dataAPI2 = async() =>{
         headers : {"Content-Type" : "application/json"} , 
         body:JSON.stringify(obj)
     }
-    const serviceKey = "GZ1hAL3RvCErjAecOI2NwxIiWMJ%2BcOI4Ktgb1SnLxMxT6s%2BlWQ5GBnZMage7LYskXe5kDkChczEyNsTKxypnvw%3D%3D"
-    const URL = "https://api.odcloud.kr/api/15102672/v1/uddi:d26dabc4-e094-463d-a4b1-cab3af66bb6d?page=1&perPage=38&serviceKey="
+    const serviceKey = "nwPZ%2F9Z3sVtcxGNXxOZfOXwnivybRXYmyoIDyvU%2BVDssxywHNMU2tA55Xa8zvHWK0bninVkiuZAA4550BDqIbQ%3D%3D"
+    const URL = "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey="
     const response = await fetch( URL+serviceKey , option );
     const data = await response.json(); 
     alert( data.data[0]["tax_type"] ) // 속성명이 특수문자가 포함된 경우 .(접근연산자) 불가능.

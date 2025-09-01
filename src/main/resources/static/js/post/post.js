@@ -26,7 +26,9 @@ const findAll = async () => {
             html += `
                 <tr>
                         <td> ${post.pno} </td>
-                        <td> ${post.ptitle} </td>
+                        <td>
+                        <a href=/post/view.jsp?pno=${post.pno}>${post.ptitle} </a>
+                         </td>
                         <td> ${post.mid} </td>
                         <td> ${post.pdate} </td>
                         <td> ${post.pview} </td>
@@ -46,7 +48,7 @@ const viewPageButtons = async (data) => {
 
     // 백엔드로 부터 받은 pageDto{} <---> data{}
     let currentPage = parseInt(data.currentPage); //parseInt(자료) : 자료를 int 타입으로 변환
-    let totalpage = data.totalpage;
+    let totalPage = data.totalPage;
     let startBtn = data.startBtn;
     let endBtn = data.endBtn;
     
@@ -67,7 +69,7 @@ const viewPageButtons = async (data) => {
     }//if end
     // **************** 다음 버튼 : 만약에 다음 페이지가 전체 페이지수보다 커지면 전체페이수로 고정 ******************* //
     html += `<li> 
-                <a href="post.jsp?cno=${cno}&page=${currentPage+1 >= totalpage ? totalpage : currentPage +1}${searchURL}"> 다음 </a>
+                <a href="post.jsp?cno=${cno}&page=${currentPage+1 >= totalPage ? totalPage : currentPage +1}${searchURL}"> 다음 </a>
             </li>`
 
     pageBtnBox.innerHTML = html

@@ -9,6 +9,7 @@ import web.model.dto.PageDto;
 import web.model.dto.PostDto;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor // 롬복 제공: final 변수에 대한 생성자 자동 제공
@@ -97,5 +98,15 @@ public class PostService {
     //[5] 게시물 개별 수정
     public int updatePost(PostDto postDto) {
         return postDao.updatePost(postDto);
+    }//func end
+
+    //[6] 게시물 댓글 등록
+    public int writeReply(Map<String,String>reply){
+        return postDao.writeReply(reply);
+    }//func end
+
+    //[7] 댓글 전체 조회
+    public List<Map<String,String>>findAllReply(int pno){
+        return postDao.findAllReply(pno);
     }//func end
 }//class end
