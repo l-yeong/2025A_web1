@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Dao {
-    private String db_url="jdbc:mysql://localhost:3306/fairRoad";
+    private String db_url="jdbc:mysql://localhost:3306/springweb";
     private String db_user="root";
     private String db_pwd="1234";
 
